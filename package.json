@@ -1,5 +1,6 @@
 {
-  "version": "0.0.0",
+  "name": "grids",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
