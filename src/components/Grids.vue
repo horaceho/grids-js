@@ -1,8 +1,11 @@
 <template>
-  <div class="mt-2 mb-4 p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
-    <div>
+  <div class="mt-2 mb-4 p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md items-center space-x-4">
+    <div id="grids" class="grid grid-flow-rows grid-rows-10 grid-cols-9 gap-2">
+      <div v-for="grid of grids" :key="grid.index" class="bg-gray-100 text-center">{{ grid.name }}</div>
+    </div>
+    <div class="mt-4">
       <div class="text-xl font-medium text-black">{{ title }}</div>
-      <p class="text-gray-500">{{ rows }} x {{ cols }} in {{ total }} grids</p>
+      <p class="text-gray-500">{{ total }} grids</p>
     </div>
   </div>
 </template>
@@ -13,14 +16,6 @@ import { ref, reactive } from "vue";
 export default {
   props: {
     title: String,
-    rows: {
-      type: Number,
-      default: 10,
-    },
-    cols: {
-      type: Number,
-      default: 9,
-    },
   },
   mounted() {
     console.log("grids mounted");
@@ -29,9 +24,26 @@ export default {
     console.log("grids unmounted()");
   },
   setup(props) {
+    const count = 30;
     const total = props.rows * props.cols;
+    let grids = [];
+    let moves = [];
+    for (let i = 0; i < total; i++) {
+      grids.push({
+        index: i,
+        name: i,
+      });
+    }
+    for (let i = 0; i < count; i++) {
+      moves.push({
+        index: i,
+        name: "ABC " + count,
+      });
+    }
+    console.log(grids);
     return {
       total,
+      grids,
     };
   },
 };

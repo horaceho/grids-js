@@ -1,6 +1,6 @@
 <template>
   <Hello msg="Hello" />
-  <Grids title="Grids" />
+  <Grids title="Qipan" />
 </template>
 
 <script setup>
