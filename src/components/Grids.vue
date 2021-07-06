@@ -2,11 +2,8 @@
   <div class="mt-2 mb-4 max-w-lg mx-auto p-8">
     <div class="grid grid-flow-rows grid-rows-10 grid-cols-9">
       <div v-for="grid of state.grids" :key="grid.index" @click="tap(grid.index)" class="text-center ">
-        <div v-if="grid.tapped" id="square" class="bg-blue-200">
-          <div id="inside">{{ grid.name }}</div>
-        </div>
-        <div v-else id="square" class="bg-yellow-100 ">
-          <div id="inside">{{ grid.name }}</div>
+        <div id="square">
+          <Grid id="inside" :info="grid" />
         </div>
       </div>
     </div>
@@ -30,8 +27,12 @@
 
 <script>
 import { ref, reactive } from "vue";
+import Grid from './Grid.vue';
 
 export default {
+  components: {
+    Grid,
+  },
   props: {
     title: { type: String, default: "Grids" },
     rows: { type: Number, default: 10 },
@@ -49,7 +50,7 @@ export default {
     },
   },
   mounted() {
-    console.log("grids mounted");
+    console.log("grids mounted()");
   },
   unmounted() {
     console.log("grids unmounted()");
@@ -65,7 +66,7 @@ export default {
     for (let i = 0; i < total; i++) {
       state.grids.push({
         index: i,
-        name: i,
+        name: "P" + i,
         tapped: false,
       });
     }
